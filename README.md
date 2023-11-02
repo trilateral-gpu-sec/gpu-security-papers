@@ -1,1 +1,35 @@
-# gpu-security-papers
+ASU-Buffalo-SNU: Trilateral GPU Security Research
+===
+Paper collection for GPU Security
+## Papar Information
+- Title:  `Simulee: Detecting CUDA Synchronization Bugs via Memory-Access Modeling`
+- Authors:  `Mingyuan Wu ...`
+- Conference/Journal: `ICSE'20`
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3377811.3380358]()
+- Abstract: While CUDA has become a mainstream parallel computing plat- form and programming model for general-purpose GPU computing, how to effectively and efficiently detect CUDA synchronization bugs remains a challenging open problem. In this paper, we pro- pose the first lightweight CUDA synchronization bug detection framework, namely Simulee, to model CUDA program execution by interpreting the corresponding LLVM bytecode and collecting the memory-access information for automatically detecting gen- eral CUDA synchronization bugs. To evaluate the effectiveness and efficiency of Simulee, we construct a benchmark with 7 popular CUDA-related projects from GitHub, upon which we conduct an extensive set of experiments. The experimental results suggest that Simulee can detect 21 out of the 24 manually identified bugs in our preliminary study and also 24 previously unknown bugs among all projects, 10 of which have already been confirmed by the develop- ers. Furthermore, Simulee significantly outperforms state-of-the-art approaches for CUDA synchronization bug detection.
+
+
+## Paper Information
+- Title:  `GPUGuard: Mitigating Contention Based Side and Covert Channel Atacks on GPUs`
+- Authors:  `Qiumin Xu ...`
+- Conference/Journal: `ICS'19`
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3330345.3330389]()
+- Abstract: Graphics processing units (GPUs) are moving towards support- ing concurrent kernel execution where multiple kernels may be co-executed on the same GPU and even on the same streaming multiprocessor (SM) core. While concurrent kernel execution im- proves hardware resource utilization, it opens up vulnerabilities to covert-channel and side-channel attacks. These attacks exploit information leakage across kernels that results from contention on shared resources; they have been shown to be a dangerous threat on CPUs, and are starting to be demonstrated on GPUs. The unique micro-architectural features of GPUs, such as specialized cache structures and massive parallel thread support, create opportunities for GPU-speciic channels to be formed. In this paper, we propose GPUGuard, a decision tree based detection and a hierarchical de- fense framework that can reliably close the covert channels. Our results show that GPUGuard can detect contention with 100% sen- sitivity and a small (8.5%) false positive rate. The timing channels are mitigated through Tangram, a GPU-speciic contention channel elimination scheme, with only 8% to 23% overhead when there is an attack and zero performance overhead when no attacks are detected. Compared to temporal partitioning, GPUGuard is 69%-96% faster in various architectures even when active, showing that it is possible to gain substantial performance from executing concurrent kernels on a single SM while securing GPUs against these attacks.
+
+## Paper Information
+- Title:  `Securing GPU via Region-based Bounds Checking`
+- Authors:  `Jaewon Lee ...`
+- Conference/Journal: `ISCA'22`
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3470496.3527420]()
+- Abstract: Graphics processing units (GPUs) have become essential general- purpose computing platforms to accelerate a wide range of work- loads, such as deep learning, scientific, and high-performance com- puting (HPC) applications. However, recent memory corruption attacks, such as buffer overflow, exposed security vulnerabilities in GPUs. We demonstrate that out-of-bounds writes are reproducible on an Nvidia GPU, which can enable other security attacks.
+We propose GPUShield, a hardware-software cooperative region- based bounds-checking mechanism, to improve GPU memory safety for global, local, and heap memory buffers. To achieve effective protection, we update the GPU driver to assign a random but unique ID to each buffer and local variable and store individual bounds information in the bounds table allocated in the global memory. The proposed hardware performs efficient bounds checking by indexing the bounds table with unique IDs. We further reduce the bounds-checking overhead by utilizing compile-time bounds analysis, workgroup/warp-level bounds checking, and GPU-specific address mode. Our performance evaluations show that GPUShield incurs little performance degradation across 88 CUDA benchmarks on the Nvidia GPU architecture and 17 OpenCL benchmarks on the Intel GPU architecture with a marginal hardware overhead.
+
+## Paper Information
+- Title:  `Piranha: A GPU Platform for Secure Computation`
+- Authors:  `Jean-Luc Watson ...`
+- Conference/Journal: `USENIX Secuiry'22`
+- Link: [https://www.usenix.org/system/files/sec22-watson.pdf]()
+- Abstract: Secure multi-party computation (MPC) is an essential tool for privacy-preserving machine learning (ML). However, secure training of large-scale ML models currently requires a pro- hibitively long time to complete. Given that large ML inference and training tasks in the plaintext setting are significantly accel- erated by Graphical Processing Units (GPUs), this raises the natural question: can secure MPC leverage GPU acceleration? A few recent works have studied this question in the context of accelerating specific components or protocols, but do not provide a general-purpose solution. Consequently, MPC devel- opers must be both experts in cryptographic protocol design and proficient at low-level GPU kernel development to achieve good performance on any new protocol implementation.
+We present Piranha, a general-purpose, modular platform for accelerating secret sharing-based MPC protocols using GPUs. Piranha allows the MPC community to easily leverage the benefits of a GPU without requiring GPU expertise. Piranha contributes a three-layer architecture: (1) a device layer that can independently accelerate secret-sharing protocols by providing integer-based kernels absent in current general-purpose GPU libraries, (2) a modular protocol layer that allows developers to maximize utility of limited GPU memory with in-place computation and iterator-based support for non-standard memory access patterns, and (3) an application layer that allows applications to remain completely agnostic to the underlying protocols they use.
+To demonstrate the benefits of Piranha, we implement 3 state-of-the-art linear secret sharing MPC protocols for secure NN training: 2-party SecureML (IEEE S&P ’17), 3-party Fal- con (PETS ’21), and 4-party FantasticFour (USENIX Security ’21). Compared to their CPU-based implementations, the same protocols implemented on top of Piranha’s protocol-agnostic acceleration exhibit a 16−48× decrease in training time. For the first time, Piranha demonstrates the feasibility of training a realistic neural network (e.g. VGG), end-to-end, using MPC in a little over one day. Piranha is open source and available at https://github.com/ucbrise/piranha. 
+
