@@ -10,6 +10,16 @@ Paper collection for GPU Security
 - Abstract: Graphics Processing Units (GPUs) are commonly integrated with computing devices to enhance the performance and capabilities of graphical workloads. In addition, they are increasingly being integrated in data centers and clouds such that they can be used to accelerate data intensive workloads. Under a number of scenar- ios the GPU can be shared between multiple applications at a fine granularity allowing a spy application to monitor side channels and attempt to infer the behavior of the victim. For example, OpenGL and WebGL send workloads to the GPU at the granularity of a frame, allowing an attacker to interleave the use of the GPU to measure the side-effects of the victim computation through perfor- mance counters or other resource tracking APIs. We demonstrate the vulnerability using two applications. First, we show that an OpenGL based spy can fingerprint websites accurately, track user activities within the website, and even infer the keystroke timings for a password text box with high accuracy. The second application demonstrates how a CUDA spy application can derive the internal parameters of a neural network model being used by another CUDA application, illustrating these threats on the cloud. To counter these attacks, the paper suggests mitigations based on limiting the rate of the calls, or limiting the granularity of the returned information.
 
 ## Papar Information
+- Title:  `LITE: A Low-Cost Practical Inter-Operable GPU TEE`
+- Authors:  `Ardhi Wiratama Baskara Yudha ...`
+- Conference/Journal: `ICS'22`
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3524059.3532361]()
+- Abstract: There is a strong need for GPU trusted execution environ- ments (TEEs) as GPU is increasingly used in the cloud envi- ronment. However, current proposals either ignore memory security (i.e., not encrypting memory) or impose a separate memory encryption domain from the host TEE, causing a very substantial slowdown for communicating data from/to the host.
+In this paper, we propose a flexible GPU memory encryp- tion design called LITE that relies on software memory en- cryption aided by small architecture support. LITE’s flexibil- ity allows GPU TEE to be co-designed with CPU to create a unified encryption domain. We show that GPU applications can be adapted to the use of LITE encryption APIs without major changes. Through various optimizations, we show that software memory encryption in LITE can produce negligible performance overheads (1.1%) for regular benchmarks and still-acceptable overheads (56%) for irregular benchmarks.
+
+
+
+## Papar Information
 - Title:  `StrongBox: A GPU TEE on Arm Endpoints`
 - Authors:  `Yunjie Deng ...`
 - Conference/Journal: `CCS'22`
@@ -88,3 +98,7 @@ Telekine enables applications to use GPU acceleration in the cloud securely, bas
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3293882.3338989]()
 - Abstract: Testing is an important and challenging part of software devel- opment and its effectiveness depends on the quality of test cases. However, there exists no means of measuring quality of tests de- veloped for GPU programs and as a result, no test case generation techniques for GPU programs aiming at high test effectiveness. Existing criteria for sequential and multithreaded CPU programs cannot be directly applied to GPU programs as GPU follows a completely different memory and execution model.
 We surveyed existing work on GPU program verification and bug fixes of open source GPU programs. Based on our findings, we define barrier, branch and loop coverage criteria and propose a set of mutation operators to measure fault finding capabilities of test cases. CLTestCheck, a framework for measuring quality of tests developed for GPU programs by code coverage analysis, fault seeding and work-group schedule amplification has been developed and evaluated using industry standard benchmarks. Experiments show that the framework is able to automatically measure test effectiveness and reveal unusual behaviours. Our planned work includes data flow coverage adopted for GPU programs to probe the underlying cause of unusual kernel behaviours and a more comprehensive work-group scheduler. We also plan to design and develop an automatic test case generator aiming at generating high quality test suites for GPU programs.
+
+
+## TODOs
+ - Organize the papers by research category, this could be for example, TEE, Memory security (overflow, UAF), Side/Covert Channels, etc
