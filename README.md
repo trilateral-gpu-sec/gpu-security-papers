@@ -2,14 +2,14 @@ ASU-Buffalo-SNU: Trilateral GPU Security Research
 ===
 Paper collection for GPU Security
 
-## Papar Information
+## Paper Information
 - Title:  `Rendered Insecure: GPU Side Channel Attacks are Practical`
 - Authors:  `Hoda Naghibijouybari ...`
 - Conference/Journal: `CCS'18`
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3243734.3243831]()
 - Abstract: Graphics Processing Units (GPUs) are commonly integrated with computing devices to enhance the performance and capabilities of graphical workloads. In addition, they are increasingly being integrated in data centers and clouds such that they can be used to accelerate data intensive workloads. Under a number of scenar- ios the GPU can be shared between multiple applications at a fine granularity allowing a spy application to monitor side channels and attempt to infer the behavior of the victim. For example, OpenGL and WebGL send workloads to the GPU at the granularity of a frame, allowing an attacker to interleave the use of the GPU to measure the side-effects of the victim computation through perfor- mance counters or other resource tracking APIs. We demonstrate the vulnerability using two applications. First, we show that an OpenGL based spy can fingerprint websites accurately, track user activities within the website, and even infer the keystroke timings for a password text box with high accuracy. The second application demonstrates how a CUDA spy application can derive the internal parameters of a neural network model being used by another CUDA application, illustrating these threats on the cloud. To counter these attacks, the paper suggests mitigations based on limiting the rate of the calls, or limiting the granularity of the returned information.
 
-## Papar Information
+## Paper Information
 - Title:  `LITE: A Low-Cost Practical Inter-Operable GPU TEE`
 - Authors:  `Ardhi Wiratama Baskara Yudha ...`
 - Conference/Journal: `ICS'22`
@@ -17,7 +17,7 @@ Paper collection for GPU Security
 - Abstract: There is a strong need for GPU trusted execution environ- ments (TEEs) as GPU is increasingly used in the cloud envi- ronment. However, current proposals either ignore memory security (i.e., not encrypting memory) or impose a separate memory encryption domain from the host TEE, causing a very substantial slowdown for communicating data from/to the host.
 In this paper, we propose a flexible GPU memory encryp- tion design called LITE that relies on software memory en- cryption aided by small architecture support. LITE’s flexibil- ity allows GPU TEE to be co-designed with CPU to create a unified encryption domain. We show that GPU applications can be adapted to the use of LITE encryption APIs without major changes. Through various optimizations, we show that software memory encryption in LITE can produce negligible performance overheads (1.1%) for regular benchmarks and still-acceptable overheads (56%) for irregular benchmarks.
 
-## Papar Information
+## Paper Information
 - Title:  `GINN: Fast GPU-TEE Based Integrity for Neural Network Training`
 - Authors:  `Aref Asvadishirehjini ...`
 - Conference/Journal: `CODASPY'22`
@@ -25,7 +25,7 @@ In this paper, we propose a flexible GPU memory encryp- tion design called LITE 
 - Abstract: Machine learning models based on Deep Neural Networks (DNNs) are increasingly deployed in a wide variety of applications, ranging from self-driving cars to COVID-19 diagnosis. To support the computational power necessary to train a DNN, cloud environments with dedicated Graphical Processing Unit (GPU) hardware support have emerged as critical infrastructure. However, there are many integrity challenges associated with outsourcing the computation to use GPU power, due to its inherent lack of safeguards to ensure computational integrity. Various approaches have been developed to address these challenges, building on trusted execution environments (TEE). Yet, no existing approach scales up to support realistic integrity-preserving DNN model training for heavy workloads (e.g., deep architectures and millions of training examples) without sustaining a significant performance hit. To mitigate the running time difference between pure TEE (i.e., full integrity) and pure GPU (i.e., no integrity) , we combine random verification of selected computation steps with systematic adjustments of DNN hyperparameters (e.g., a narrow gradient clipping range), which limits the attacker's ability to shift the model parameters arbitrarily. Experimental analysis shows that the new approach can achieve a 2X to 20X performance improvement over a pure TEE-based solution while guaranteeing an extremely high probability of integrity (e.g., 0.999) with respect to state-of-the-art DNN backdoor attacks.
 
 
-## Papar Information
+## Paper Information
 - Title:  `StrongBox: A GPU TEE on Arm Endpoints`
 - Authors:  `Yunjie Deng ...`
 - Conference/Journal: `CCS'22`
@@ -33,7 +33,7 @@ In this paper, we propose a flexible GPU memory encryp- tion design called LITE 
 - Abstract: A wide range of Arm endpoints leverage integrated and discrete GPUs to accelerate computation such as image processing and numerical processing applications. However, in spite of these im- portant use cases, Arm GPU security has yet to be scrutinized by the community. By exploiting vulnerabilities in the kernel, attack- ers can directly access sensitive data used during GPU computing, such as personally-identifiable image data in computer vision tasks. Existing work has used Trusted Execution Environments (TEEs) to address GPU security concerns on Intel-based platforms, while there are numerous architectural differences that lead to novel technical challenges in deploying TEEs for Arm GPUs. In addition, extant Arm-based GPU defenses are intended for secure machine learning, and lack generality. There is a need for generalizable and efficient Arm-based GPU security mechanisms.
 To address these problems, we present StrongBox, the first GPU TEE for secured general computation on Arm endpoints. During confidential computation on Arm GPUs, StrongBox provides an isolated execution environment by ensuring exclusive access to the GPU. Our approach is based in part on a dynamic, fine-grained memory protection policy as Arm-based GPUs typically share a unified memory with the CPU, a stark contrast with Intel-based platforms. Furthermore, by characterizing GPU buffers as secure and non-secure, StrongBox reduces redundant security introspec- tion operations to control access to sensitive data used by the GPU, ultimately reducing runtime overhead. Our design leverages the widely-deployed Arm TrustZone and generic Arm features, with- out hardware modification or architectural changes. We prototype StrongBox using an off-the-shelf Arm Mali GPU and perform an extensive evaluation. Our results show that StrongBox suc- cessfully ensures the GPU computing security with a low (4.70% - 15.26%) overhead across several indicative benchmarks.
 
-## Papar Information
+## Paper Information
 - Title:  `Honeycomb: Secure and Efficient GPU Executions via Static Validation`
 - Authors:  `Haohui Mai ...`
 - Conference/Journal: `USENIX Security'23`
@@ -42,14 +42,14 @@ To address these problems, we present StrongBox, the first GPU TEE for secured g
 This paper presents Honeycomb, a software-based, secure and efficient TEE for GPU applications. The key idea of Hon- eycomb is to leverage static analysis to validate the security of GPU applications at load time. Co-designing with the CPU TEE, as well as adding OS and driver support, Honeycomb is able to remove both the OS and the driver from the trusted computing base (TCB). Validation also ensures that all ap- plications inside the system are secure, enabling a concise and secure approach to exchange data in plaintext via shared device memory on the GPU.
 We have prototyped Honeycomb targeting the AMD RX6900XT GPU. Honeycomb is evaluated on five repre- sentative benchmarks and 23 applications in total, covering workloads of high performance computing, deep learning, and image processing. The results show that Honeycomb is both practical and efficient to secure real-world GPU applica- tions. Validating applications to run on Honeycomb requires modest developer efforts. The TCB is 18× smaller than the Linux-based systems. Secure inter-process communication is up to 529× faster. Moreover, running large language model workloads like BERT and NanoGPT has ∼2% overheads.
 
-## Papar Information
+## Paper Information
 - Title:  `Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System`
 - Authors:  `Sankha Baran Dutta ...`
 - Conference/Journal: `ISCA'23`
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3579371.3589080]()
 - Abstract: The deep learning revolution has been enabled in large part by GPUs, and more recently accelerators, which make it possible to carry out computationally demanding training and inference in ac- ceptable times. As the size of machine learning networks and work- loads continues to increase, multi-GPU machines have emerged as an important platform offered on High Performance Computing and cloud data centers. Since these machines are shared among multiple users, it becomes increasingly important to protect ap- plications against potential attacks. In this paper, we explore the vulnerability of Nvidia’s DGX multi-GPU machines to covert and side channel attacks. These machines consist of a number of discrete GPUs that are interconnected through a combination of custom interconnect (NVLink) and PCIe connections. We reverse engineer the interconnected cache hierarchy and show that it is possible for an attacker on one GPU to cause contention on the L2 cache of another GPU. We use this observation to first develop a covert channel attack across two GPUs, achieving the best bandwidth of around 4 MB/s. We also develop a prime and probe attack on a remote GPU allowing an attacker to recover the cache access pattern of another workload. This access pattern can be used in any number of side channel attacks: we demonstrate a proof of concept attack that fingerprints the application running on the remote GPU, with high accuracy. We also develop a proof of concept attack to extract hyperparameters of a machine learning workload. Our work establishes for the first time the vulnerability of these machines to microarchitectural attacks and can guide future research to improve their security.
 
-## Papar Information
+## Paper Information
 - Title:  `Side Channel Attacks in Computation Offloading Systems with GPU Virtualization`
 - Authors:  `Sihang Liu ...`
 - Conference/Journal: `SPW'19`
@@ -57,7 +57,7 @@ We have prototyped Honeycomb targeting the AMD RX6900XT GPU. Honeycomb is evalua
 - Abstract: Abstract—The Internet of Things (IoT) and mobile systems nowadays are required to perform more intensive computation, such as facial detection, image recognition and even remote gaming, etc. Due to the limited computation performance and power budget, it is sometimes impossible to perform these workloads locally. As high-performance GPUs become more common in the cloud, offloading the computation to the cloud becomes a possible choice. However, due to the fact that offloaded workloads from different devices (belonging to different users) are being computed in the same cloud, security concerns arise. Side channel attacks on GPU systems have been widely studied, where the threat model is the attacker and the victim are running on the same operating system. Recently, major GPU vendors have provided hardware and library support to virtualize GPUs for better isolation among users. This work studies the side channel attacks from one virtual machine to another where both share the same physical GPU. We show that it is possible to infer other user’s activities in this setup and can further steal others deep learning model.
 
 
-## Papar Information
+## Paper Information
 - Title:  `Simulee: Detecting CUDA Synchronization Bugs via Memory-Access Modeling`
 - Authors:  `Mingyuan Wu ...`
 - Conference/Journal: `ICSE'20`
