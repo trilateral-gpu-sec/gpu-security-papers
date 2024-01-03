@@ -206,9 +206,43 @@ In this paper, we present GPUHarbor, a widescale GPU MCS test- ing tool with a w
 - Authors:  `Jade Alglave ...`
 - Conference/Journal: `ASPLOS'15`
 - Link: [https://users.soe.ucsc.edu/~tsorensen/files/asplos2015.pdf]()
-- Abstraction: Concurrency is pervasive and perplexing, particularly on graphics processing units (GPUs). Current specifications of languages and hardware are inconclusive; thus programmers often rely on folklore assumptions when writing software.
+- Abstract: Concurrency is pervasive and perplexing, particularly on graphics processing units (GPUs). Current specifications of languages and hardware are inconclusive; thus programmers often rely on folklore assumptions when writing software.
 To remedy this state of affairs, we conducted a large em- pirical study of the concurrent behaviour of deployed GPUs. Armed with litmus tests (i.e. short concurrent programs), we questioned the assumptions in programming guides and ven- dor documentation about the guarantees provided by hard- ware. We developed a tool to generate thousands of litmus tests and run them under stressful workloads. We observed a litany of previously elusive weak behaviours, and exposed folklore beliefs about GPU programming—often supported by official tutorials—as false.
 As a way forward, we propose a model of Nvidia GPU hardware, which correctly models every behaviour wit- nessed in our experiments. The model is a variant of SPARC Relaxed Memory Order (RMO), structured following the GPU concurrency hierarchy.
+
+## Paper Information
+- Title:  `Exposing Errors Related to Weak Memory in GPU Applications`
+- Authors:  `Tyler Sorensen ...`
+- Conference/Journal: `PLDI'16`
+- Link: [https://users.soe.ucsc.edu/~tsorensen/files/pldi2016.pdf]()
+- Abstract: We present the systematic design of a testing environment that uses stressing and fuzzing to reveal errors in GPU appli- cations that arise due to weak memory effects. We evaluate our approach on seven GPUs spanning three Nvidia archi- tectures, across ten CUDA applications that use fine-grained concurrency. Our results show that applications that rarely or never exhibit errors related to weak memory when executed natively can readily exhibit these errors when executed in our testing environment. Our testing environment also pro- vides a means to help identify the root causes of such errors, and automatically suggests how to insert fences that harden an application against weak memory bugs. To understand the cost of GPU fences, we benchmark applications with fences provided by the hardening strategy as well as a more conservative, sound fencing strategy.
+
+
+## Paper Information
+- Title:  `Automatically Comparing Memory Consistency Models`
+- Authors:  `John Wickerson ...`
+- Conference/Journal: `...`
+- Link: [https://johnwickerson.github.io/papers/memalloy.pdf]()
+- Abstract: A memory consistency model (MCM) is the part of a programming language or computer architecture specification that defines which values can legally be read from shared memory locations. Because MCMs take into account various optimisations employed by archi- tectures and compilers, they are often complex and counterintu- itive, which makes them challenging to design and to understand.
+We identify four tasks involved in designing and understanding MCMs: generating conformance tests, distinguishing two MCMs, checking compiler optimisations, and checking compiler map- pings. We show that all four tasks are instances of a general constraint-satisfaction problem to which the solution is either a pro- gram or a pair of programs. Although this problem is intractable for automatic solvers when phrased over programs directly, we show how to solve analogous constraints over program executions, and then construct programs that satisfy the original constraints.
+Our technique, which is implemented in the Alloy modelling framework, is illustrated on several software- and architecture-level MCMs, both axiomatically and operationally defined. We automat- ically recreate several known results, often in a simpler form, in- cluding: distinctions between variants of the C11 MCM; a fail- ure of the ‘SC-DRF guarantee’ in an early C11 draft; that x86 is ‘multi-copy atomic’ and Power is not; bugs in common C11 com- piler optimisations; and bugs in a compiler mapping from OpenCL to AMD-style GPUs. We also use our technique to develop and validate a new MCM for NVIDIA GPUs that supports a natural mapping from OpenCL.
+
+## Paper Information
+- Title:  `GPU schedulers: how fair is fair enough?`
+- Authors:  `Tyler Sorensen ...`
+- Conference/Journal: `CONCUR'18`
+- Link: [https://users.soe.ucsc.edu/~tsorensen/files/concur2018.pdf]()
+- Abstract: Blocking synchronisation idioms, e.g. mutexes and barriers, play an important role in concurrent programming. However, systems with semi-fair schedulers, e.g. graphics processing units (GPUs), are becoming increasingly common. Such schedulers provide varying degrees of fairness, guar- anteeing enough to allow some, but not all, blocking idioms. While a number of applications that use blocking idioms do run on today’s GPUs, reasoning about liveness properties of such applications is difficult as documentation is scarce and scattered.
+In this work, we aim to clarify fairness properties of semi-fair schedulers. To do this, we define a general temporal logic formula, based on weak fairness, parameterised by a predicate that enables fairness per-thread at certain points of an execution. We then define fairness properties for three GPU schedulers: HSA, OpenCL, and occupancy-bound execution. We examine existing GPU applications and show that none of the above schedulers are strong enough to provide the fairness properties required by these applications. It hence appears that existing GPU scheduler descriptions do not entirely capture the fairness properties that are provided on current GPUs. Thus, we present two new schedulers that aim to support existing GPU applications. We analyse the behaviour of common blocking idioms under each scheduler and show that one of our new schedulers allows a more natural implementation of a GPU protocol.
+
+
+## Paper Information
+- Title:  `The Semantics of Shared Memory in Intel CPU/FPGA Systems`
+- Authors:  `DAN IORGA ...`
+- Conference/Journal: `CCS'21`
+- Link: [https://users.soe.ucsc.edu/~tsorensen/files/oopsla2021a.pdf]()
+- Abstract: Heterogeneous CPU/FPGA devices, in which a CPU and an FPGA can execute together while sharing memory, are becoming popular in several computing sectors. In this paper, we study the shared-memory semantics of these devices, with a view to providing a firm foundation for reasoning about the programs that run on them. Our focus is on Intel platforms that combine an Intel FPGA with a multicore Xeon CPU. We describe the weak-memory behaviours that are allowed (and observable) on these devices when CPU threads and an FPGA thread access common memory locations in a fine-grained manner through multiple channels. Some of these behaviours are familiar from well-studied CPU and GPU concurrency; others are weaker still. We encode these behaviours in two formal memory models: one operational, one axiomatic. We develop executable implementations of both models, using the CBMC bounded model-checking tool for our operational model and the Alloy modelling language for our axiomatic model. Using these, we cross-check our models against each other via a translator that converts Alloy-generated executions into queries for the CBMC model. We also validate our models against actual hardware by translating 583 Alloy-generated executions into litmus tests that we run on CPU/FPGA devices; when doing this, we avoid the prohibitive cost of synthesising a hardware design per litmus test by creating our own ‘litmus-test processor’ in hardware. We expect that our models will be useful for low-level programmers, compiler writers, and designers of analysis tools. Indeed, as a demonstration of the utility of our work, we use our operational model to reason about a producer/consumer buffer implemented across the CPU and the FPGA. When the buffer uses insufficient synchronisation – a situation that our model is able to detect – we observe that its performance improves at the cost of occasional data corruption.
+
 ## TODOs
 - Organize the papers by research category, this could be for example, TEE, Memory security (overflow, UAF), Side/Covert Channels, kernel etc
 
