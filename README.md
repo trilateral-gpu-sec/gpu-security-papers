@@ -201,6 +201,14 @@ We introduce Milkomeda, a system solution for automatically repurposing WebGL se
 - Abstract: Memory consistency specifications (MCSs) are a difficult, yet criti- cal, part of a concurrent programming framework. Existing MCS testing tools are not immediately accessible, and thus, have only been applied to a limited number of devices. However, in the post- Dennard scaling landscape, there has been an explosion of new architectures and frameworks. Studying the shared memory be- haviors of these new platforms is important to understand their behavior and ensure conformance to framework specifications.
 In this paper, we present GPUHarbor, a widescale GPU MCS test- ing tool with a web interface and an Android app. Using GPUHar- bor, we deployed a testing campaign that checks conformance and characterizes weak behaviors. We advertised GPUHarbor on fo- rums and social media, allowing us to collect testing data from 106 devices, spanning seven vendors. In terms of devices tested, this constitutes the largest study on weak memory behaviors by at least 10×, and our conformance tests identified two new bugs on embed- ded Arm and NVIDIA devices. Analyzing our characterization data yields many insights, including quantifying and comparing weak behavior occurrence rates (e.g., AMD GPUs show 25.3× more weak behaviors on average than Intel). We conclude with a discussion of the impact our results have on software development for these performance-critical devices.
 
+## Paper Information
+- Title:  `GPU Concurrency: Weak Behaviours and Programming Assumptions`
+- Authors:  `Jade Alglave ...`
+- Conference/Journal: `ASPLOS'15`
+- Link: [https://users.soe.ucsc.edu/~tsorensen/files/asplos2015.pdf]()
+- Abstraction: Concurrency is pervasive and perplexing, particularly on graphics processing units (GPUs). Current specifications of languages and hardware are inconclusive; thus programmers often rely on folklore assumptions when writing software.
+To remedy this state of affairs, we conducted a large em- pirical study of the concurrent behaviour of deployed GPUs. Armed with litmus tests (i.e. short concurrent programs), we questioned the assumptions in programming guides and ven- dor documentation about the guarantees provided by hard- ware. We developed a tool to generate thousands of litmus tests and run them under stressful workloads. We observed a litany of previously elusive weak behaviours, and exposed folklore beliefs about GPU programming—often supported by official tutorials—as false.
+As a way forward, we propose a model of Nvidia GPU hardware, which correctly models every behaviour wit- nessed in our experiments. The model is a variant of SPARC Relaxed Memory Order (RMO), structured following the GPU concurrency hierarchy.
 ## TODOs
 - Organize the papers by research category, this could be for example, TEE, Memory security (overflow, UAF), Side/Covert Channels, kernel etc
 
