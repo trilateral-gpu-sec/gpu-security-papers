@@ -2,18 +2,22 @@ ASU-Buffalo-SNU: Trilateral GPU Security Research
 ===
 Paper collection for GPU Security
 
-## Paper Information
-- Title:  `Rendered Insecure: GPU Side Channel Attacks are Practical`
+### Covert and Side Channel Attacks
+* [Rendered Insecure: GPU Side Channel Attacks are Practical](#rendered-insecuregpu-side-channel-attacks-are-practical)
+* Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System
+* 
+
+## Rendered Insecure: GPU Side Channel Attacks are Practical 
 - Authors:  `Hoda Naghibijouybari ...`
 - Conference/Journal: `CCS'18`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3243734.3243831]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3243734.3243831](https://dl.acm.org/doi/pdf/10.1145/3243734.3243831)
 - Abstract: Graphics Processing Units (GPUs) are commonly integrated with computing devices to enhance the performance and capabilities of graphical workloads. In addition, they are increasingly being integrated in data centers and clouds such that they can be used to accelerate data intensive workloads. Under a number of scenar- ios the GPU can be shared between multiple applications at a fine granularity allowing a spy application to monitor side channels and attempt to infer the behavior of the victim. For example, OpenGL and WebGL send workloads to the GPU at the granularity of a frame, allowing an attacker to interleave the use of the GPU to measure the side-effects of the victim computation through perfor- mance counters or other resource tracking APIs. We demonstrate the vulnerability using two applications. First, we show that an OpenGL based spy can fingerprint websites accurately, track user activities within the website, and even infer the keystroke timings for a password text box with high accuracy. The second application demonstrates how a CUDA spy application can derive the internal parameters of a neural network model being used by another CUDA application, illustrating these threats on the cloud. To counter these attacks, the paper suggests mitigations based on limiting the rate of the calls, or limiting the granularity of the returned information.
 
 ## Paper Information
 - Title:  `LITE: A Low-Cost Practical Inter-Operable GPU TEE`
 - Authors:  `Ardhi Wiratama Baskara Yudha ...`
 - Conference/Journal: `ICS'22`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3524059.3532361]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3524059.3532361](https://dl.acm.org/doi/pdf/10.1145/3524059.3532361)
 - Abstract: There is a strong need for GPU trusted execution environ- ments (TEEs) as GPU is increasingly used in the cloud envi- ronment. However, current proposals either ignore memory security (i.e., not encrypting memory) or impose a separate memory encryption domain from the host TEE, causing a very substantial slowdown for communicating data from/to the host.
 In this paper, we propose a flexible GPU memory encryp- tion design called LITE that relies on software memory en- cryption aided by small architecture support. LITE’s flexibil- ity allows GPU TEE to be co-designed with CPU to create a unified encryption domain. We show that GPU applications can be adapted to the use of LITE encryption APIs without major changes. Through various optimizations, we show that software memory encryption in LITE can produce negligible performance overheads (1.1%) for regular benchmarks and still-acceptable overheads (56%) for irregular benchmarks.
 
