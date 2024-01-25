@@ -3,11 +3,12 @@ ASU-Buffalo-SNU: Trilateral GPU Security Research
 Paper collection for GPU Security
 
 ### Covert and Side Channel Attacks
-* [Rendered Insecure: GPU Side Channel Attacks are Practical](#rendered-insecuregpu-side-channel-attacks-are-practical)
-* Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System
-* 
+* [Rendered Insecure: GPU Side Channel Attacks are Practical](#rendered-insecure)
+* [Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System](#spy-in-the-box)
+* [A complete key recovery timing attack on a GPU](#key-recovery)
+* [Side Channel Attacks in Computation Offloading Systems with GPU Virtualization](#computation-offloading)
 
-## Rendered Insecure: GPU Side Channel Attacks are Practical 
+## Rendered Insecure: GPU Side Channel Attacks are Practical <a name="rendered-insecure"></a>
 - Authors:  `Hoda Naghibijouybari ...`
 - Conference/Journal: `CCS'18`
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3243734.3243831](https://dl.acm.org/doi/pdf/10.1145/3243734.3243831)
@@ -46,15 +47,13 @@ To address these problems, we present StrongBox, the first GPU TEE for secured g
 This paper presents Honeycomb, a software-based, secure and efficient TEE for GPU applications. The key idea of Hon- eycomb is to leverage static analysis to validate the security of GPU applications at load time. Co-designing with the CPU TEE, as well as adding OS and driver support, Honeycomb is able to remove both the OS and the driver from the trusted computing base (TCB). Validation also ensures that all ap- plications inside the system are secure, enabling a concise and secure approach to exchange data in plaintext via shared device memory on the GPU.
 We have prototyped Honeycomb targeting the AMD RX6900XT GPU. Honeycomb is evaluated on five repre- sentative benchmarks and 23 applications in total, covering workloads of high performance computing, deep learning, and image processing. The results show that Honeycomb is both practical and efficient to secure real-world GPU applica- tions. Validating applications to run on Honeycomb requires modest developer efforts. The TCB is 18× smaller than the Linux-based systems. Secure inter-process communication is up to 529× faster. Moreover, running large language model workloads like BERT and NanoGPT has ∼2% overheads.
 
-## Paper Information
-- Title:  `Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System`
+## Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System <a name="spy-in-the-box"></a>
 - Authors:  `Sankha Baran Dutta ...`
 - Conference/Journal: `ISCA'23`
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3579371.3589080]()
 - Abstract: The deep learning revolution has been enabled in large part by GPUs, and more recently accelerators, which make it possible to carry out computationally demanding training and inference in ac- ceptable times. As the size of machine learning networks and work- loads continues to increase, multi-GPU machines have emerged as an important platform offered on High Performance Computing and cloud data centers. Since these machines are shared among multiple users, it becomes increasingly important to protect ap- plications against potential attacks. In this paper, we explore the vulnerability of Nvidia’s DGX multi-GPU machines to covert and side channel attacks. These machines consist of a number of discrete GPUs that are interconnected through a combination of custom interconnect (NVLink) and PCIe connections. We reverse engineer the interconnected cache hierarchy and show that it is possible for an attacker on one GPU to cause contention on the L2 cache of another GPU. We use this observation to first develop a covert channel attack across two GPUs, achieving the best bandwidth of around 4 MB/s. We also develop a prime and probe attack on a remote GPU allowing an attacker to recover the cache access pattern of another workload. This access pattern can be used in any number of side channel attacks: we demonstrate a proof of concept attack that fingerprints the application running on the remote GPU, with high accuracy. We also develop a proof of concept attack to extract hyperparameters of a machine learning workload. Our work establishes for the first time the vulnerability of these machines to microarchitectural attacks and can guide future research to improve their security.
 
-## Paper Information
-- Title:  `Side Channel Attacks in Computation Offloading Systems with GPU Virtualization`
+## Side Channel Attacks in Computation Offloading Systems with GPU Virtualization <a name="computation-offloading"></a>
 - Authors:  `Sihang Liu ...`
 - Conference/Journal: `SPW'19`
 - Link: [https://www.cs.virginia.edu/~fs5ve/papers/conf/liu_SafeThings.pdf]()
@@ -109,8 +108,7 @@ Telekine enables applications to use GPU acceleration in the cloud securely, bas
 - Abstract: Testing is an important and challenging part of software devel- opment and its effectiveness depends on the quality of test cases. However, there exists no means of measuring quality of tests de- veloped for GPU programs and as a result, no test case generation techniques for GPU programs aiming at high test effectiveness. Existing criteria for sequential and multithreaded CPU programs cannot be directly applied to GPU programs as GPU follows a completely different memory and execution model.
 We surveyed existing work on GPU program verification and bug fixes of open source GPU programs. Based on our findings, we define barrier, branch and loop coverage criteria and propose a set of mutation operators to measure fault finding capabilities of test cases. CLTestCheck, a framework for measuring quality of tests developed for GPU programs by code coverage analysis, fault seeding and work-group schedule amplification has been developed and evaluated using industry standard benchmarks. Experiments show that the framework is able to automatically measure test effectiveness and reveal unusual behaviours. Our planned work includes data flow coverage adopted for GPU programs to probe the underlying cause of unusual kernel behaviours and a more comprehensive work-group scheduler. We also plan to design and develop an automatic test case generator aiming at generating high quality test suites for GPU programs.
 
-## Paper Information
-- Title:  `A complete key recovery timing attack on a GPU`
+## A complete key recovery timing attack on a GPU <a name="key-recovery"></a>
 - Authors:  `shen Hang Jiang ...`
 - Conference/Journal: `HPCA'16`
 - Link: [https://ieeexplore.ieee.org/abstract/document/7446081?casa_token=IAdVIJBcFrQAAAAA:DvHiv4hNaQrrSLmWN4Vsc4XlzBJY0SS2OjdcF5e2-vhcQvGQ6T0KQ6dQDgeu1h0WNK9myos]()
