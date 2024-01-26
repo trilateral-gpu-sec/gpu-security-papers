@@ -2,11 +2,42 @@ ASU-Buffalo-SNU: Trilateral GPU Security Research
 ===
 Paper collection for GPU Security
 
+### General GPU security
+* [Understanding The Security of Discrete GPUs](#discrete)
+
 ### Covert and Side Channel Attacks
 * [Rendered Insecure: GPU Side Channel Attacks are Practical](#rendered-insecure)
 * [Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System](#spy-in-the-box)
 * [A complete key recovery timing attack on a GPU](#key-recovery)
 * [Side Channel Attacks in Computation Offloading Systems with GPU Virtualization](#computation-offloading)
+
+### Covert and Side Channel Attack Defenses/Mitigations
+* [GPUGuard: Mitigating Contention Based Side and Covert Channel Atacks on GPUs](#gpu-guard)
+* [RCoal: Mitigating GPU Timing Attack via Subwarp-Based Randomized Coalescing Techniques](#rcoal)
+* [BCoal: Bucketing-Based Memory Coalescing for Efficient and Secure GPUs](#bcoal)
+
+### Trusted/Secure/Isolated Execution (TEEs for GPUs)
+* [LITE: A Low-Cost Practical Inter-Operable GPU TEE](#lite)
+* [GINN: Fast GPU-TEE Based Integrity for Neural Network Training](#ginn)
+* [StrongBox: A GPU TEE on Arm Endpoints](#strong-box)
+* [Honeycomb: Secure and Efficient GPU Executions via Static Validation](#honeycomb)
+* [Piranha: A GPU Platform for Secure Computation](#piranha)
+* [SEGIVE: A Practical Framework of Secure GPU Execution in Virtualization Environment](#segive)
+* [Milkomeda: Safeguarding the Mobile GPU Interface Using WebGL Security Checks](#milkomeda)
+* [Building GPU TEEs using CPU Secure Enclaves with GEVisor](#gevisor)
+* [Telekine: Secure Computing with Cloud GPUs](#telekine)
+* [ZeroKernel: Secure Context-Isolated Execution on Commodity GPUs](#zerokernel)
+
+### Concurrency, Memory Consistency
+* [Simulee: Detecting CUDA Synchronization Bugs via Memory-Access Modeling](#simulee)
+* [On the Correctness of GPU Programs](#correctness)
+* [PSSM: achieving secure memory for GPUs with partitioned and sectored security metadata](#pssm)
+
+## Understanding The Security of Discrete GPUs <a name="discrete"></a>
+- Authors: `Zhiting Zhu ...`
+- Conference/Journal: `GPGPU'16`
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3038228.3038233](https://dl.acm.org/doi/pdf/10.1145/3038228.3038233)
+- Abstract: GPUs have become an integral part of modern systems, but their implications for system security are not yet clear. This pa- per demonstrates both that discrete GPUs cannot be used as secure co-processors and that GPUs provide a stealthy platform for mal- ware. First, we examine a recent proposal to use discrete GPUs as secure co-processors and show that the security guarantees of the proposed system do not hold on the GPUs we investigate. Sec- ond, we demonstrate that (under certain circumstances) it is possi- ble to bypass IOMMU protections and create stealthy, long-lived GPU-based malware. We demonstrate a novel attack that compro- mises the in-kernel GPU driver and one that compromises GPU mi- crocode to gain full access to CPU physical memory. In general, we find that the highly sophisticated, but poorly documented GPU hard- ware architecture, hidden behind obscure close-source device dri- vers and vendor-specific APIs, not only make GPUs a poor choice for applications requiring strong security, but also make GPUs into a security threat.
 
 ## Rendered Insecure: GPU Side Channel Attacks are Practical <a name="rendered-insecure"></a>
 - Authors:  `Hoda Naghibijouybari ...`
@@ -14,35 +45,31 @@ Paper collection for GPU Security
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3243734.3243831](https://dl.acm.org/doi/pdf/10.1145/3243734.3243831)
 - Abstract: Graphics Processing Units (GPUs) are commonly integrated with computing devices to enhance the performance and capabilities of graphical workloads. In addition, they are increasingly being integrated in data centers and clouds such that they can be used to accelerate data intensive workloads. Under a number of scenar- ios the GPU can be shared between multiple applications at a fine granularity allowing a spy application to monitor side channels and attempt to infer the behavior of the victim. For example, OpenGL and WebGL send workloads to the GPU at the granularity of a frame, allowing an attacker to interleave the use of the GPU to measure the side-effects of the victim computation through perfor- mance counters or other resource tracking APIs. We demonstrate the vulnerability using two applications. First, we show that an OpenGL based spy can fingerprint websites accurately, track user activities within the website, and even infer the keystroke timings for a password text box with high accuracy. The second application demonstrates how a CUDA spy application can derive the internal parameters of a neural network model being used by another CUDA application, illustrating these threats on the cloud. To counter these attacks, the paper suggests mitigations based on limiting the rate of the calls, or limiting the granularity of the returned information.
 
-## Paper Information
-- Title:  `LITE: A Low-Cost Practical Inter-Operable GPU TEE`
+## LITE: A Low-Cost Practical Inter-Operable GPU TEE <a name="lite"></a>
 - Authors:  `Ardhi Wiratama Baskara Yudha ...`
 - Conference/Journal: `ICS'22`
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3524059.3532361](https://dl.acm.org/doi/pdf/10.1145/3524059.3532361)
 - Abstract: There is a strong need for GPU trusted execution environ- ments (TEEs) as GPU is increasingly used in the cloud envi- ronment. However, current proposals either ignore memory security (i.e., not encrypting memory) or impose a separate memory encryption domain from the host TEE, causing a very substantial slowdown for communicating data from/to the host.
 In this paper, we propose a flexible GPU memory encryp- tion design called LITE that relies on software memory en- cryption aided by small architecture support. LITE’s flexibil- ity allows GPU TEE to be co-designed with CPU to create a unified encryption domain. We show that GPU applications can be adapted to the use of LITE encryption APIs without major changes. Through various optimizations, we show that software memory encryption in LITE can produce negligible performance overheads (1.1%) for regular benchmarks and still-acceptable overheads (56%) for irregular benchmarks.
 
-## Paper Information
-- Title:  `GINN: Fast GPU-TEE Based Integrity for Neural Network Training`
+## GINN: Fast GPU-TEE Based Integrity for Neural Network Training <a name="ginn"></a>
 - Authors:  `Aref Asvadishirehjini ...`
 - Conference/Journal: `CODASPY'22`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3508398.3511503]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3508398.3511503](https://dl.acm.org/doi/pdf/10.1145/3508398.3511503)
 - Abstract: Machine learning models based on Deep Neural Networks (DNNs) are increasingly deployed in a wide variety of applications, ranging from self-driving cars to COVID-19 diagnosis. To support the computational power necessary to train a DNN, cloud environments with dedicated Graphical Processing Unit (GPU) hardware support have emerged as critical infrastructure. However, there are many integrity challenges associated with outsourcing the computation to use GPU power, due to its inherent lack of safeguards to ensure computational integrity. Various approaches have been developed to address these challenges, building on trusted execution environments (TEE). Yet, no existing approach scales up to support realistic integrity-preserving DNN model training for heavy workloads (e.g., deep architectures and millions of training examples) without sustaining a significant performance hit. To mitigate the running time difference between pure TEE (i.e., full integrity) and pure GPU (i.e., no integrity) , we combine random verification of selected computation steps with systematic adjustments of DNN hyperparameters (e.g., a narrow gradient clipping range), which limits the attacker's ability to shift the model parameters arbitrarily. Experimental analysis shows that the new approach can achieve a 2X to 20X performance improvement over a pure TEE-based solution while guaranteeing an extremely high probability of integrity (e.g., 0.999) with respect to state-of-the-art DNN backdoor attacks.
 
 
-## Paper Information
-- Title:  `StrongBox: A GPU TEE on Arm Endpoints`
+## StrongBox: A GPU TEE on Arm Endpoints <a name="strong-box"></a>
 - Authors:  `Yunjie Deng ...`
 - Conference/Journal: `CCS'22`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3548606.3560627]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3548606.3560627](https://dl.acm.org/doi/pdf/10.1145/3548606.3560627)
 - Abstract: A wide range of Arm endpoints leverage integrated and discrete GPUs to accelerate computation such as image processing and numerical processing applications. However, in spite of these im- portant use cases, Arm GPU security has yet to be scrutinized by the community. By exploiting vulnerabilities in the kernel, attack- ers can directly access sensitive data used during GPU computing, such as personally-identifiable image data in computer vision tasks. Existing work has used Trusted Execution Environments (TEEs) to address GPU security concerns on Intel-based platforms, while there are numerous architectural differences that lead to novel technical challenges in deploying TEEs for Arm GPUs. In addition, extant Arm-based GPU defenses are intended for secure machine learning, and lack generality. There is a need for generalizable and efficient Arm-based GPU security mechanisms.
 To address these problems, we present StrongBox, the first GPU TEE for secured general computation on Arm endpoints. During confidential computation on Arm GPUs, StrongBox provides an isolated execution environment by ensuring exclusive access to the GPU. Our approach is based in part on a dynamic, fine-grained memory protection policy as Arm-based GPUs typically share a unified memory with the CPU, a stark contrast with Intel-based platforms. Furthermore, by characterizing GPU buffers as secure and non-secure, StrongBox reduces redundant security introspec- tion operations to control access to sensitive data used by the GPU, ultimately reducing runtime overhead. Our design leverages the widely-deployed Arm TrustZone and generic Arm features, with- out hardware modification or architectural changes. We prototype StrongBox using an off-the-shelf Arm Mali GPU and perform an extensive evaluation. Our results show that StrongBox suc- cessfully ensures the GPU computing security with a low (4.70% - 15.26%) overhead across several indicative benchmarks.
 
-## Paper Information
-- Title:  `Honeycomb: Secure and Efficient GPU Executions via Static Validation`
+## Honeycomb: Secure and Efficient GPU Executions via Static Validation <a name="honeycomb"></a>
 - Authors:  `Haohui Mai ...`
 - Conference/Journal: `USENIX Security'23`
-- Link: [https://www.usenix.org/system/files/osdi23-mai.pdf]()
+- Link: [https://www.usenix.org/system/files/osdi23-mai.pdf](https://www.usenix.org/system/files/osdi23-mai.pdf)
 - Abstract: Graphics Processing Units (GPUs) unlock emerging use cases like large language models and autonomous driving. They process a large amount of sensitive data, where security is of critical importance. GPU Trusted Execution Environ- ments (TEEs) generally provide security to GPU applications with modest overheads. Recent proposals for GPU TEEs are promising, but many of them require hardware changes that have a long lead time to deploy in production environments.
 This paper presents Honeycomb, a software-based, secure and efficient TEE for GPU applications. The key idea of Hon- eycomb is to leverage static analysis to validate the security of GPU applications at load time. Co-designing with the CPU TEE, as well as adding OS and driver support, Honeycomb is able to remove both the OS and the driver from the trusted computing base (TCB). Validation also ensures that all ap- plications inside the system are secure, enabling a concise and secure approach to exchange data in plaintext via shared device memory on the GPU.
 We have prototyped Honeycomb targeting the AMD RX6900XT GPU. Honeycomb is evaluated on five repre- sentative benchmarks and 23 applications in total, covering workloads of high performance computing, deep learning, and image processing. The results show that Honeycomb is both practical and efficient to secure real-world GPU applica- tions. Validating applications to run on Honeycomb requires modest developer efforts. The TCB is 18× smaller than the Linux-based systems. Secure inter-process communication is up to 529× faster. Moreover, running large language model workloads like BERT and NanoGPT has ∼2% overheads.
@@ -50,29 +77,27 @@ We have prototyped Honeycomb targeting the AMD RX6900XT GPU. Honeycomb is evalua
 ## Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System <a name="spy-in-the-box"></a>
 - Authors:  `Sankha Baran Dutta ...`
 - Conference/Journal: `ISCA'23`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3579371.3589080]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3579371.3589080](https://dl.acm.org/doi/pdf/10.1145/3579371.3589080)
 - Abstract: The deep learning revolution has been enabled in large part by GPUs, and more recently accelerators, which make it possible to carry out computationally demanding training and inference in ac- ceptable times. As the size of machine learning networks and work- loads continues to increase, multi-GPU machines have emerged as an important platform offered on High Performance Computing and cloud data centers. Since these machines are shared among multiple users, it becomes increasingly important to protect ap- plications against potential attacks. In this paper, we explore the vulnerability of Nvidia’s DGX multi-GPU machines to covert and side channel attacks. These machines consist of a number of discrete GPUs that are interconnected through a combination of custom interconnect (NVLink) and PCIe connections. We reverse engineer the interconnected cache hierarchy and show that it is possible for an attacker on one GPU to cause contention on the L2 cache of another GPU. We use this observation to first develop a covert channel attack across two GPUs, achieving the best bandwidth of around 4 MB/s. We also develop a prime and probe attack on a remote GPU allowing an attacker to recover the cache access pattern of another workload. This access pattern can be used in any number of side channel attacks: we demonstrate a proof of concept attack that fingerprints the application running on the remote GPU, with high accuracy. We also develop a proof of concept attack to extract hyperparameters of a machine learning workload. Our work establishes for the first time the vulnerability of these machines to microarchitectural attacks and can guide future research to improve their security.
 
 ## Side Channel Attacks in Computation Offloading Systems with GPU Virtualization <a name="computation-offloading"></a>
 - Authors:  `Sihang Liu ...`
 - Conference/Journal: `SPW'19`
-- Link: [https://www.cs.virginia.edu/~fs5ve/papers/conf/liu_SafeThings.pdf]()
+- Link: [https://www.cs.virginia.edu/~fs5ve/papers/conf/liu_SafeThings.pdf](https://www.cs.virginia.edu/~fs5ve/papers/conf/liu_SafeThings.pdf)
 - Abstract: Abstract—The Internet of Things (IoT) and mobile systems nowadays are required to perform more intensive computation, such as facial detection, image recognition and even remote gaming, etc. Due to the limited computation performance and power budget, it is sometimes impossible to perform these workloads locally. As high-performance GPUs become more common in the cloud, offloading the computation to the cloud becomes a possible choice. However, due to the fact that offloaded workloads from different devices (belonging to different users) are being computed in the same cloud, security concerns arise. Side channel attacks on GPU systems have been widely studied, where the threat model is the attacker and the victim are running on the same operating system. Recently, major GPU vendors have provided hardware and library support to virtualize GPUs for better isolation among users. This work studies the side channel attacks from one virtual machine to another where both share the same physical GPU. We show that it is possible to infer other user’s activities in this setup and can further steal others deep learning model.
 
 
-## Paper Information
-- Title:  `Simulee: Detecting CUDA Synchronization Bugs via Memory-Access Modeling`
+## Simulee: Detecting CUDA Synchronization Bugs via Memory-Access Modeling <a name="simulee"></a>
 - Authors:  `Mingyuan Wu ...`
 - Conference/Journal: `ICSE'20`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3377811.3380358]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3377811.3380358](https://dl.acm.org/doi/pdf/10.1145/3377811.3380358)
 - Abstract: While CUDA has become a mainstream parallel computing plat- form and programming model for general-purpose GPU computing, how to effectively and efficiently detect CUDA synchronization bugs remains a challenging open problem. In this paper, we pro- pose the first lightweight CUDA synchronization bug detection framework, namely Simulee, to model CUDA program execution by interpreting the corresponding LLVM bytecode and collecting the memory-access information for automatically detecting gen- eral CUDA synchronization bugs. To evaluate the effectiveness and efficiency of Simulee, we construct a benchmark with 7 popular CUDA-related projects from GitHub, upon which we conduct an extensive set of experiments. The experimental results suggest that Simulee can detect 21 out of the 24 manually identified bugs in our preliminary study and also 24 previously unknown bugs among all projects, 10 of which have already been confirmed by the develop- ers. Furthermore, Simulee significantly outperforms state-of-the-art approaches for CUDA synchronization bug detection.
 
 
-## Paper Information
-- Title:  `GPUGuard: Mitigating Contention Based Side and Covert Channel Atacks on GPUs`
+## GPUGuard: Mitigating Contention Based Side and Covert Channel Atacks on GPUs <a name="gpu-guard"></a>
 - Authors:  `Qiumin Xu ...`
 - Conference/Journal: `ICS'19`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3330345.3330389]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3330345.3330389](https://dl.acm.org/doi/pdf/10.1145/3330345.3330389)
 - Abstract: Graphics processing units (GPUs) are moving towards support- ing concurrent kernel execution where multiple kernels may be co-executed on the same GPU and even on the same streaming multiprocessor (SM) core. While concurrent kernel execution im- proves hardware resource utilization, it opens up vulnerabilities to covert-channel and side-channel attacks. These attacks exploit information leakage across kernels that results from contention on shared resources; they have been shown to be a dangerous threat on CPUs, and are starting to be demonstrated on GPUs. The unique micro-architectural features of GPUs, such as specialized cache structures and massive parallel thread support, create opportunities for GPU-speciic channels to be formed. In this paper, we propose GPUGuard, a decision tree based detection and a hierarchical de- fense framework that can reliably close the covert channels. Our results show that GPUGuard can detect contention with 100% sen- sitivity and a small (8.5%) false positive rate. The timing channels are mitigated through Tangram, a GPU-speciic contention channel elimination scheme, with only 8% to 23% overhead when there is an attack and zero performance overhead when no attacks are detected. Compared to temporal partitioning, GPUGuard is 69%-96% faster in various architectures even when active, showing that it is possible to gain substantial performance from executing concurrent kernels on a single SM while securing GPUs against these attacks.
 
 ## Paper Information
@@ -83,28 +108,25 @@ We have prototyped Honeycomb targeting the AMD RX6900XT GPU. Honeycomb is evalua
 - Abstract: Graphics processing units (GPUs) have become essential general- purpose computing platforms to accelerate a wide range of work- loads, such as deep learning, scientific, and high-performance com- puting (HPC) applications. However, recent memory corruption attacks, such as buffer overflow, exposed security vulnerabilities in GPUs. We demonstrate that out-of-bounds writes are reproducible on an Nvidia GPU, which can enable other security attacks.
 We propose GPUShield, a hardware-software cooperative region- based bounds-checking mechanism, to improve GPU memory safety for global, local, and heap memory buffers. To achieve effective protection, we update the GPU driver to assign a random but unique ID to each buffer and local variable and store individual bounds information in the bounds table allocated in the global memory. The proposed hardware performs efficient bounds checking by indexing the bounds table with unique IDs. We further reduce the bounds-checking overhead by utilizing compile-time bounds analysis, workgroup/warp-level bounds checking, and GPU-specific address mode. Our performance evaluations show that GPUShield incurs little performance degradation across 88 CUDA benchmarks on the Nvidia GPU architecture and 17 OpenCL benchmarks on the Intel GPU architecture with a marginal hardware overhead.
 
-## Paper Information
-- Title:  `Piranha: A GPU Platform for Secure Computation`
+## Piranha: A GPU Platform for Secure Computation <a name="piranha"></a>
 - Authors:  `Jean-Luc Watson ...`
 - Conference/Journal: `USENIX Secuiry'22`
-- Link: [https://www.usenix.org/system/files/sec22-watson.pdf]()
+- Link: [https://www.usenix.org/system/files/sec22-watson.pdf](https://www.usenix.org/system/files/sec22-watson.pdf)
 - Abstract: Secure multi-party computation (MPC) is an essential tool for privacy-preserving machine learning (ML). However, secure training of large-scale ML models currently requires a pro- hibitively long time to complete. Given that large ML inference and training tasks in the plaintext setting are significantly accel- erated by Graphical Processing Units (GPUs), this raises the natural question: can secure MPC leverage GPU acceleration? A few recent works have studied this question in the context of accelerating specific components or protocols, but do not provide a general-purpose solution. Consequently, MPC devel- opers must be both experts in cryptographic protocol design and proficient at low-level GPU kernel development to achieve good performance on any new protocol implementation.
 We present Piranha, a general-purpose, modular platform for accelerating secret sharing-based MPC protocols using GPUs. Piranha allows the MPC community to easily leverage the benefits of a GPU without requiring GPU expertise. Piranha contributes a three-layer architecture: (1) a device layer that can independently accelerate secret-sharing protocols by providing integer-based kernels absent in current general-purpose GPU libraries, (2) a modular protocol layer that allows developers to maximize utility of limited GPU memory with in-place computation and iterator-based support for non-standard memory access patterns, and (3) an application layer that allows applications to remain completely agnostic to the underlying protocols they use.
 To demonstrate the benefits of Piranha, we implement 3 state-of-the-art linear secret sharing MPC protocols for secure NN training: 2-party SecureML (IEEE S&P ’17), 3-party Fal- con (PETS ’21), and 4-party FantasticFour (USENIX Security ’21). Compared to their CPU-based implementations, the same protocols implemented on top of Piranha’s protocol-agnostic acceleration exhibit a 16−48× decrease in training time. For the first time, Piranha demonstrates the feasibility of training a realistic neural network (e.g. VGG), end-to-end, using MPC in a little over one day. Piranha is open source and available at https://github.com/ucbrise/piranha. 
 
-## Paper Information
-- Title:  `Telekine: Secure Computing with Cloud GPUs`
+## Telekine: Secure Computing with Cloud GPUs <a name="telekine"></a>
 - Authors:  `Tyler Hunt ...`
 - Conference/Journal: `NSDI'20`
-- Link: [https://www.usenix.org/system/files/nsdi20-paper-hunt.pdf]()
+- Link: [https://www.usenix.org/system/files/nsdi20-paper-hunt.pdf](https://www.usenix.org/system/files/nsdi20-paper-hunt.pdf)
 - Abstract: GPUs have become ubiquitous in the cloud due to the dramatic performance gains they enable in domains such as machine learning and computer vision. However, offloading GPU computation to the cloud requires placing enormous trust in providers and administrators. Recent proposals for GPU trusted execution environments (TEEs) are promising but fail to address very real side-channel concerns. To illustrate the severity of the problem, we demonstrate a novel attack that enables an attacker to correctly classify images from ImageNet [17] by observing only the timing of GPU kernel execution, rather than the images themselves.
 Telekine enables applications to use GPU acceleration in the cloud securely, based on a novel GPU stream abstraction that ensures execution and interaction through untrusted com- ponents are independent of any secret data. Given a GPU with support for a TEE, Telekine employs a novel variant of API remoting to partition application-level software into components to ensure secret-dependent behaviors occur only on trusted components. Telekine can securely train modern image recognition models on MXNet [10] with 10%–22% per- formance penalty relative to an insecure baseline with a locally attached GPU. It runs graph algorithms using Galois [75] on one and two GPUs with 18%–41% overhead.
 
-## Paper Information
-- Title:  `On the Correctness of GPU Programs`
+## On the Correctness of GPU Programs <a name="correctness"></a>
 - Authors:  `Chao Peng ...`
 - Conference/Journal: `ISSTA'19`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3293882.3338989]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3293882.3338989](https://dl.acm.org/doi/pdf/10.1145/3293882.3338989)
 - Abstract: Testing is an important and challenging part of software devel- opment and its effectiveness depends on the quality of test cases. However, there exists no means of measuring quality of tests de- veloped for GPU programs and as a result, no test case generation techniques for GPU programs aiming at high test effectiveness. Existing criteria for sequential and multithreaded CPU programs cannot be directly applied to GPU programs as GPU follows a completely different memory and execution model.
 We surveyed existing work on GPU program verification and bug fixes of open source GPU programs. Based on our findings, we define barrier, branch and loop coverage criteria and propose a set of mutation operators to measure fault finding capabilities of test cases. CLTestCheck, a framework for measuring quality of tests developed for GPU programs by code coverage analysis, fault seeding and work-group schedule amplification has been developed and evaluated using industry standard benchmarks. Experiments show that the framework is able to automatically measure test effectiveness and reveal unusual behaviours. Our planned work includes data flow coverage adopted for GPU programs to probe the underlying cause of unusual kernel behaviours and a more comprehensive work-group scheduler. We also plan to design and develop an automatic test case generator aiming at generating high quality test suites for GPU programs.
 
@@ -114,8 +136,7 @@ We surveyed existing work on GPU program verification and bug fixes of open sour
 - Link: [https://ieeexplore.ieee.org/abstract/document/7446081?casa_token=IAdVIJBcFrQAAAAA:DvHiv4hNaQrrSLmWN4Vsc4XlzBJY0SS2OjdcF5e2-vhcQvGQ6T0KQ6dQDgeu1h0WNK9myos]()
 - Abstract: Graphics Processing Units (GPUs) have become mainstream parallel computing devices. They are deployed on diverse platforms, and an increasing number of applications have been moved to GPUs to exploit their massive parallel computational resources. GPUs are starting to be used for security services, where high-volume data is encrypted to ensure integrity and confidentiality. However, the security of GPUs has only begun to receive attention. Issues such as side-channel vulnerability have not been addressed. The goal of this paper is to evaluate the side-channel security of GPUs and demonstrate a complete AES (Advanced Encryption Standard) key recovery using known ciphertext through a timing channel. To the best of our knowledge, this is the first work that clearly demonstrates the vulnerability of a commercial GPU architecture to side-channel timing attacks. Specifically, for AES-128, we have been able to recover all key bytes utilizing a timing side channel in under 30 minutes.
 
-## Paper Information
-- Title:  `RCoal: Mitigating GPU Timing Attack via Subwarp-Based Randomized Coalescing Techniques`
+## RCoal: Mitigating GPU Timing Attack via Subwarp-Based Randomized Coalescing Techniques <a name="rcoal"></a>
 - Authors:  `Gurunath Kadam ...`
 - Conference/Journal: `HPCA'18`
 - Link: [https://ieeexplore.ieee.org/abstract/document/8327006?casa_token=59wRCae-8NsAAAAA:w-TZkfrsDEC8IpxNIP3wBZ-dqHXLw0uMm6tByHdnQ6oBub8kcCaZHoqAnfvEpyHBe8hr83Y]()
@@ -135,22 +156,19 @@ We surveyed existing work on GPU program verification and bug fixes of open sour
 - Link: [https://dl.acm.org/doi/pdf/10.1145/2523649.2523681]()
 - Abstract: Recent work demonstrates the feasibility and practical use of se- cure two-party computation [5, 9, 15, 23]. In this work, we present the first Graphical Processing Unit (GPU)-optimized implementa- tion of an optimized Yao’s garbled-circuit protocol for two-party secure computation in the honest-but-curious and 1-bit-leaked ma- licious models. We implement nearly all of the modern protocol advancements, such as Free-XOR, Pipelining, and OT extension. Our implementation is the first allowing entire circuits to be gen- erated concurrently, and makes use of a modification of the XOR technique so that circuit generation is optimized for implementa- tion on SIMD architectures of GPUs. In our best cases we generate about 75 million gates per second and we exceed the state of the art performance metrics on modern CPU systems by a factor of about 200, and GPU systems by about a factor of 2.3. While many re- cent works on garbled circuits exploit the embarrassingly parallel nature of many tasks that are part of a secure computation protocol, we show that there are still various forms and levels of paralleliza- tion that may yet improve the performance of these protocols. In particular, we highlight that implementations on the SIMD archi- tecture of modern GPUs require significantly different approaches than the general purpose MIMD architecture of multi-core CPUs, which again differ from the needs of parallelizing on compute clus- ters. Additionally, modifications to the security models for many common protocols have large effects on reasonable parallel archi- tectures for implementation.
 
-## Paper Information
-- Title:  `ZeroKernel: Secure Context-Isolated Execution on Commodity GPUs`
+## ZeroKernel: Secure Context-Isolated Execution on Commodity GPUs <a name="zerokernel"></a>
 - Authors:  `Ohmin Kwon ...`
 - Conference/Journal: `TDSC'21`
-- Link: [https://ieeexplore.ieee.org/abstract/document/8863993?casa_token=MxtP79FAdrYAAAAA:cXwy_2fY_Q44LHkB-zDWIcG5bmrszT5kE_KXJesbSEAhkjPdmsjDmSwxUVnPz45wvE7urr8]()
+- Link: [https://ieeexplore.ieee.org/abstract/document/8863993?casa_token=MxtP79FAdrYAAAAA:cXwy_2fY_Q44LHkB-zDWIcG5bmrszT5kE_KXJesbSEAhkjPdmsjDmSwxUVnPz45wvE7urr8](https://ieeexplore.ieee.org/abstract/document/8863993?casa_token=MxtP79FAdrYAAAAA:cXwy_2fY_Q44LHkB-zDWIcG5bmrszT5kE_KXJesbSEAhkjPdmsjDmSwxUVnPz45wvE7urr8)
 - Abstract: In the last decade, the dedicated graphics processing unit (GPU) has emerged as an architecture for high-performance computing workloads. Recently, researchers have also focused on the isolation property of a dedicated GPU and suggested GPU-based secure computing environments with several promising applications. However, despite the security analysis conducted by the prior studies, it has been unclear whether a dedicated GPU can be leveraged as a secure processor in the presence of a kernel-privileged attacker. In this paper, we first demonstrate the security of dedicated GPUs through comprehensive studies on context information for GPU execution. The paper shows that a kernel-privileged attacker can manipulate the GPU contexts to redirect memory accesses or execute arbitrary GPU codes on the running GPU kernel. Based on the security analysis, this paper proposes a new on-chip execution model for the dedicated GPU and a novel defense mechanism supporting the security of the on-chip execution. With comprehensive evaluation, the paper assures that the proposed solutions effectively isolate sensitive data in on-chip storages and defend against known attack vectors from a privileged attacker, supporting that the commodity GPUs can be leveraged as a secure processor.
 
-## Paper Information
-- Title:  `PSSM: achieving secure memory for GPUs with partitioned and sectored security metadata`
+## PSSM: achieving secure memory for GPUs with partitioned and sectored security metadata <a name="pssm"></a>
 - Authors:  `Shougang Yuan ...`
 - Conference/Journal: `ICS'21`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3447818.3460374]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3447818.3460374](https://dl.acm.org/doi/pdf/10.1145/3447818.3460374)
 - Abstract: In this paper, we investigate the secure memory architecture for GPUs and point out that conventional CPU secure memory architecture can not be directly adopted to the GPUs. The key reasons include: (1) accessing the security metadata, including encryption counters, message authentication codes (MACs) and integrity trees, requires significant memory bandwidth, which may lead to severe bandwidth competition with normal data accesses and degrade the GPU performance; (2) contemporary GPUs use partitioned memory organization, which results in storage and coherence problems for encryption counters and integrity trees since different partitions may need to update the same counter/integrity tree blocks; and (3) the existing split-counter block organization is not friendly to sectored caches, which are commonly used in GPU for bandwidth savings. Based on these observations, we propose partitioned and sectored security metadata (PSSM), which has two components: (a) using the offset addresses (referred to as local addresses) within each partition, instead of the virtual or physical addresses, to generate the metadata so as to solve the counter or integrity tree storage and coherence problem and (b) reorganizing the security metadata to make them friendly to the sectored cache structure so as to reduce the memory bandwidth consumption of metadata accesses. With these proposed schemes, the performance overhead of secure GPU memory is reduced from 59.22% to 16.84% on average. If only memory encryption is required, the performance overhead is reduced from 29.53% to 5.18%.
 
-## Paper Information
-- Title:  `SEGIVE: A Practical Framework of Secure GPU Execution in Virtualization Environment`
+## SEGIVE: A Practical Framework of Secure GPU Execution in Virtualization Environment <a name="segive"></a>
 - Authors:  `Ziyang Wang ...`
 - Conference/Journal: `IPCCC'20`
 - Link: [https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9391574]()
@@ -172,24 +190,21 @@ In this paper, we propose SEGIVE, a practical framework of secure GPU execution 
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3195970.3196058]()
 - Abstract: Conventional attacks against existing logic obfuscation techniques rely on the presence of an activated hardware for analysis. In reality, obtaining such activated chips may not always be practical, especially if the on-chip test structures are disabled. In this paper, we develop an iterative SAT formulation based attack strategy for deobfuscating many-core GPU hardware without any requirement of an activated chip. Our experiments on a real testbed using NVIDIA’s SASSIFI framework reveal that more than 95% of the application runs on such an approximately unlocked GPU result in correct outcomes with 95% confidence-level and 5% confidence-interval. To counter the proposed attack, we develop a Cache Locking countermeasure which significantly degrades the performance of GPGPU applications for a wrong cache-key.
 
-## Paper Information
-- Title:  `Milkomeda: Safeguarding the Mobile GPU Interface Using WebGL Security Checks`
+## Milkomeda: Safeguarding the Mobile GPU Interface Using WebGL Security Checks <a name="milkomeda"></a>
 - Authors:  `Zhihao Yao ...`
 - Conference/Journal: `CCS'18`
-- Link: [https://dl.acm.org/doi/pdf/10.1145/3243734.3243772]()
+- Link: [https://dl.acm.org/doi/pdf/10.1145/3243734.3243772](https://dl.acm.org/doi/pdf/10.1145/3243734.3243772)
 - Abstract: GPU-accelerated graphics is commonly used in mobile applications. Unfortunately, the graphics interface exposes a large amount of potentially vulnerable kernel code (i.e., the GPU device driver) to untrusted applications. This broad attack surface has resulted in numerous reported vulnerabilities that are exploitable from un- privileged mobile apps. We observe that web browsers have faced and addressed the exact same problem in WebGL, a framework used by web apps for graphics acceleration. Web browser vendors have developed and deployed a plethora of security checks for the WebGL interface.
 We introduce Milkomeda, a system solution for automatically repurposing WebGL security checks to safeguard the mobile graph- ics interface. We show that these checks can be used with minimal modifications (which we have automated using a tool called Check- Gen), significantly reducing the engineering effort. Moreover, we demonstrate an in-process shield space for deploying these checks for mobile applications. Compared to the multi-process architecture used by web browsers to protect the integrity of the security checks, our solution improves the graphics performance by eliminating the need for Inter-Process Communication and shared memory data transfer, while providing integrity guarantees for the evalu- ation of security checks. Our evaluation shows that Milkomeda achieves close-to-native GPU performance at reasonably increased CPU utilization.
 
 
-## Paper Information
-- Title:  `BCoal: Bucketing-Based Memory Coalescing for Efficient and Secure GPUs`
+## BCoal: Bucketing-Based Memory Coalescing for Efficient and Secure GPUs <a name="bcoal"></a>
 - Authors:  `Gurunath Kadam ...`
 - Conference/Journal: `HPCA'20`
-- Link: [https://ieeexplore.ieee.org/abstract/document/9065581?casa_token=kBBhe0bjqT8AAAAA:d_OimbPvPLGVedoixa24TTUK5omIK1DoCQgmLalObE3Y7F7QB4_sT1BkYKcE_XQIVyZdVxc]()
+- Link: [https://ieeexplore.ieee.org/abstract/document/9065581?casa_token=kBBhe0bjqT8AAAAA:d_OimbPvPLGVedoixa24TTUK5omIK1DoCQgmLalObE3Y7F7QB4_sT1BkYKcE_XQIVyZdVxc](https://ieeexplore.ieee.org/abstract/document/9065581?casa_token=kBBhe0bjqT8AAAAA:d_OimbPvPLGVedoixa24TTUK5omIK1DoCQgmLalObE3Y7F7QB4_sT1BkYKcE_XQIVyZdVxc)
 - Abstract: Graphics Processing Units (GPUs) are becoming a de facto choice for accelerating applications from a wide range of domains ranging from graphics to high-performance computing. As a result, it is getting increasingly desirable to improve the cooperation between traditional CPUs and accelerators such as GPUs. However, given the growing security concerns in the CPU space, closer integration of GPUs has further expanded the attack surface. For example, several side-channel attacks have shown that sensitive information can be leaked from the CPU end. In the same vein, several side-channel attacks are also now being developed in the GPU world. Overall, it is challenging to keep emerging CPU-GPU heterogeneous systems secure while maintaining their performance and energy efficiency. In this paper, we focus on developing an efficient defense mechanism for a type of correlation timing attack on GPUs. Such an attack has been shown to recover AES private keys by exploiting the relationship between the number of coalesced memory accesses and total execution time. Prior state-of-the-art defense mechanisms use inefficient randomized coalescing techniques to defend against such GPU attacks and require turning-off bandwidth conserving techniques such as caches and miss-status holding registers (MSHRs) to ensure security. To address these limitations, we propose BCoal - a new bucketing-based coalescing mechanism. BCoal significantly reduces the information leakage by always issuing pre-determined numbers of coalesced accesses (called buckets). With the help of a detailed application-level analysis, BCoal determines the bucket sizes and pads, if necessary, the number of real accesses with additional (padded) accesses to meet the bucket sizes ensuring the security against the correlation timing attack. Furthermore, BCoal generates the padded accesses such that the security is ensured even in the presence of MSHRs and caches. In effect, BCoal significantly improves GPU security at a modest performance loss.
 
-## Paper Information
-- Title:  `Building GPU TEEs using CPU Secure Enclaves with GEVisor`
+## Building GPU TEEs using CPU Secure Enclaves with GEVisor <a name="gevisor"></a>
 - Authors:  `Xiaolong Wu ...`
 - Conference/Journal: `SoCC'23`
 - Link: [https://dl.acm.org/doi/pdf/10.1145/3620678.3624659]()
@@ -271,6 +286,22 @@ This work proposes a mutation testing approach for evaluating MCS testing enviro
 - Abstract: CUDA, OpenCL, and OpenACC are the primary means of writing general-purpose software for NVIDIA GPUs, all of which are subject to the same well-documented memory safety vulnerabilities currently plaguing software written in C and C++. One can argue that the GPU execution environment makes software development more error prone. Unlike C and C++, CUDA features multiple, distinct memory spaces to map to the GPU’s unique memory hierarchy, and a typical CUDA program has thousands of concurrently executing threads. Furthermore, the CUDA platform has fewer guardrails than CPU platforms that have been forced to incrementally adjust to a barrage of security attacks. Unfortunately, the peculiarities of the GPU make it difficult to directly port memory safety solutions from the CPU space.
 This paper presents cuCatch, a new memory safety error detection tool designed specifically for the CUDA programming model. cuCatch combines optimized compiler instrumentation with driver support to implement a novel algorithm for catching spatial and temporal memory safety errors with low performance overheads. Our experimental results on a wide set of GPU applications show that cuCatch incurs a 19% runtime slowdown on average, which is orders of magnitude faster than state-of-the-art debugging tools on GPUs. Moreover, our quantitative evaluation demonstrates cuCatch’s higher error detection coverage compared to prior memory safety tools. The combination of high error detection coverage and low runtime overheads makes cuCatch an ideal candidate for accelerating memory safety debugging for GPU applications.
 
+
+
+Understanding The Security of Discrete GPUs
+
 ## TODOs
 - Organize the papers by research category, this could be for example, TEE, Memory security (overflow, UAF), Side/Covert Channels, kernel etc
 
+
+
+Input => performance score {
+    coverage => how many blocks were executed => higher the better,
+    distance => for each executed block{
+        sum(static_block_distance * block_execution_count)
+    } 
+}
+
+execution_count > 0
+
+ds = summation
