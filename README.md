@@ -10,6 +10,7 @@ Paper collection for GPU Security
 
 
 ### Covert and Side Channel Attacks
+* [FeatureBleed: Inferring Private Enriched Attributes From Sparsity-Optimized AI Accelerators](#featurebleed)
 * [Rendered Insecure: GPU Side Channel Attacks are Practical](#rendered-insecure)
 * [Spy in the GPU-box: Covert and Side Channel Attacks on Multi-GPU System](#spy-in-the-box)
 * [A complete key recovery timing attack on a GPU](#key-recovery)
@@ -63,6 +64,12 @@ Paper collection for GPU Security
 * [On the Correctness of GPU Programs](#correctness)
 * [Analyzing Secure Memory Architecture for GPUs](#secure-memory)
 * [Plutus: Bandwidth-Efficient Memory Security for GPUs](#bandwidth-efficient-memory-security)
+
+## FeatureBleed: Inferring Private Enriched Attributes From Sparsity-Optimized AI Accelerators <a name="featurebleed"></a>
+- Authors: `Darsh Asher, Farshad Dizani, Joshua Kalyanapu, Rosario Cammarota, Aydin Aysu, Samira Mirbagher Ajorpaz`
+- Conference/Journal: `IEEE Computer Architecture Letters'26`
+- Link: [https://doi.org/10.1109/LCA.2026.3666823](https://doi.org/10.1109/LCA.2026.3666823) ([arXiv](https://arxiv.org/abs/2602.18304))
+- Abstract (summary): FeatureBleed infers private, backend-retrieved attributes of ML inference services from end-to-end timing caused by sparsity-driven zero-skipping. The evaluation spans Intel AVX, Intel AMX, and NVIDIA A100 backends and DNN, CNN, and hybrid CNN-MLP models. The attack uses a label-only API and auxiliary profiling data, without power measurements, DVFS manipulation, or shared-cache observations. Response-time padding is evaluated as a mitigation.
 
 ## Creating the First Confidential GPUs: The team at NVIDIA brings confidentiality and integrity to user code and data for accelerated computing. <a name="confidential-nvidia"></a>
 - Authors: `Gobikrishna Dhanuskodi ...`
